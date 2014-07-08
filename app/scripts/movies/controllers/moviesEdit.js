@@ -8,10 +8,12 @@
  * Controller of the moviecityApp
  */
 angular.module('moviecityApp')
-  .controller('MoviesEditCtrl', function ($scope, movie) {
-    console.log(movie);
+  .controller('MoviesEditCtrl', function ($scope, movie,movieModel) {
+    movie.year = moment(movie.releaseYear).format('YYYY');
+    $scope.movie = movie;
 
-    // movie.year = moment(movie.releaseYear).format('YYYY');
-    // $scope.movie = movie;
+    $scope.save = function(){
+      movieModel.save(movie);
+    };
 
   });
