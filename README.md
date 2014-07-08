@@ -10,6 +10,8 @@ The motivation of this project was to demostrate my seniority in JS
 
 [First Install NodeJS](http://nodejs.org/download/)
 
+Then Install npm and bower in linux this is the command:
+
 `sudo npm install && bower install`
 
 Build Project
