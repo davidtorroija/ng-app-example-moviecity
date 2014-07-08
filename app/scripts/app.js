@@ -14,7 +14,7 @@ angular
     // 'ngCookies',
     // 'ngResource',
     'ngRoute',
-    'Movies'
+    // 'Movies'
   ])
   //routes config!
   .config(function ($routeProvider) {
