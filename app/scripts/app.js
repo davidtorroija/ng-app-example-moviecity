@@ -14,7 +14,7 @@ angular
     // 'ngCookies',
     // 'ngResource',
     'ngRoute',
-    // 'Movies'
+    'Movies'
   ])
   //routes config!
   .config(function ($routeProvider) {
@@ -32,13 +32,11 @@ angular
         controller: 'MoviesEditCtrl',
         resolve: {
           movie: function($location,$route,movieModel) {
-            console.log(movieModel);
             var id = $route.current.params.idMovie;
-            // console.log('goa',movieModel);
-            // return movieModel.doSomethingHard('movie',id)
-            // .catch(function() {
-            //   $location.path('/');
-            // });
+            return movieModel.get(id)
+            .catch(function() {
+              $location.path('/');
+            });
           },
         }
       })
