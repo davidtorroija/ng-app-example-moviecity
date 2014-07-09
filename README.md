@@ -1,7 +1,9 @@
 ## ng-app-example-moviecity
 
 The motivation of this project was to demostrate my seniority in JS
-Techonoligies used: Angular, Bootstrap, Yeoman, Grunt, Bower, UnderScore, moment, SASS, Compass, HTML5,
+
+##Technologies used: 
+Angular, Bootstrap, Yeoman, Grunt, Bower, UnderScore, moment, SASS, Compass, HTML5, etc.
 
 
 ### Maintainer
