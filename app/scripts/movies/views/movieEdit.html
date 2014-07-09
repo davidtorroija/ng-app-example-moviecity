@@ -21,14 +21,6 @@
           <img ng-src="{{movie.imageURL}}">
       </div>
       <div class="col-xs-6">
-          <span>Actors:</span>
-          <div ng-repeat="actor in movie.actors">
-              <a class="inline" ng-href="#/actors/{{actor.id}}">
-                {{actor.fullName}}
-              </a>
-              <span ng-show="!$last">, </span>
-          </div>
-          <div>Rating: {{movie.rating}}</div>
           <div>Genre: {{movie.genre}}</div>
           <div class="row">
             <label class="col-xs-4 control-label" for="textinput">Director</label>
@@ -43,12 +35,41 @@
             <span class="label" ng-class="{'label-warning': movie.rating<3, 'label-info': movie.rating>=3 && movie.rating<7, 'label-success': movie.rating>=7}">{{movie.rating}}</span>
             </div>
           </div>
-       
-          <hr/>
-
-          <div class="pull-right row top-space-5">
-            <button class="btn btn-info" ng-click="save()">Save</button>
+          <div class="row top-space-5">
+            <label class="col-xs-4 control-label" for="textinput">Actors</label>
+            <div class="col-xs-8">
+               <select multiple
+                chosen
+                ng-model="movie.actors"
+                ng-options="actor as actor.fullName for actor in actors">
+                <option value=""></option>
+              </select>
+              {{movie.actors}}
+            </div>
           </div>
+          <div class="row top-space-5">
+            <label class="col-xs-4 control-label" for="textinput">Genre</label>
+            <div >
+               <select multiple class="col-md-8" style="width:200px"
+                chosen
+                ng-model="movie.genre"
+                ng-options="genre for genre in genres">
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+
+          <hr/>
+          <div class="row top-space-5">
+            <div class="col-xs-2">
+              <button class="btn btn-info" ng-click="save()">Save</button>
+            </div>
+            <div class="col-xs-4">
+             <a class="btn btn-danger" ng-href="#/movies/{{movie.id}}">Cancel</a>
+            </div>
+          </div>
+
+
       </div>
     </div>
   </div>

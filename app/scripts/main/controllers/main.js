@@ -7,7 +7,18 @@
  * # MoviesEditCtrl
  * Controller of the moviecityApp
  */
-angular.module('moviecityApp')
-  .controller('MainCtrl', function ($scope, movies) {
-    $scope.movies = movies;
-  });
+ angular.module('moviecityApp')
+ .controller('MainCtrl', function ($scope, movies, movieModel,$location) {
+  $scope.movies = movies;
+
+  $scope.getLocation = function(val) {
+    return movieModel.get()
+    .then(function(data){
+      return data;
+    });
+  };
+
+  $scope.select = function(){
+    $location.path('/movies/' + $scope.selected);
+  };
+});

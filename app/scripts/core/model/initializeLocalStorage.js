@@ -24,7 +24,7 @@ angular.module('Model')
     ],
     directorName: 'James Cameron',
     rating: 8.1,
-    genre: 'Action, Suspense, Sci-Fi',
+    genre: ['Action', 'Suspense', 'Sci-Fi'],
     imageURL: 'http://ia.media-imdb.com/images/M/MV5BODE1MDczNTUxOV5BMl5BanBnXkFtZTcwMTA0NDQyNA@@._V1_SX214_AL_.jpg'
   }];
 
@@ -42,9 +42,11 @@ angular.module('Model')
       movies: [{name:'Song',id:3}],
     }
   ];
+  var genres = ['Action', 'Suspense', 'Sci-Fi', 'Drama', 'Fantasy'];
 
   $localStorage.movies = $localStorage.movies || movies;
   $localStorage.actors = $localStorage.actors || actors;
+  $localStorage.genres = $localStorage.genre || genres;
 
   console.log('asd');
 

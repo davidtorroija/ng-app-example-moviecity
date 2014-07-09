@@ -32,21 +32,16 @@
           <div>Director: {{movie.directorName}}</div>
           <div>Rating: {{movie.rating}}</div>
           <div>Genre: {{movie.genre}}</div>
+          <span>Genre:</span>
+          <div ng-repeat="genre in movie.genre">
+              <a class="inline" ng-href="#/actors/{{actor.id}}">
+                {{genre}}
+              </a>
+              <span ng-show="!$last">, </span>
+          </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="space-4"></div>
-
-<div class="row">
-  <div class="col-xs-12" >
-    <div class="space-4"></div>
-
-    <div>
-
-      <hr class="no-margin">
-    </div>
-  </div>
-</div>
 

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
+    <link rel="stylesheet" href="bower_components/chosen/chosen.css">
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
@@ -22,12 +23,14 @@
     <!-- Add your site or application content here -->
     <div class="container">
       <div class="header">
+
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#/movies/1">Contact</a></li>
+          <li class="active"><a ng-href="#/">Home</a></li>
+          <!-- <li><a ng-href="#/movies">Movies</a></li>
+          <li><a ng-href="#/movies/1">Actors</a></li> -->
         </ul>
         <h3 class="text-muted">Movie City</h3>
+
       </div>
 
       <div ng-view=""></div>
@@ -79,20 +82,29 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
     <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-chosen-localytics/chosen.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="bower_components/chosen/chosen.jquery.js"></script>
+
         <script src="scripts/core/model/module.js"></script>
         <script src="scripts/core/model/model.js"></script>
         <script src="scripts/core/model/initializeLocalStorage.js"></script>
 
         <script src="scripts/app.js"></script>
-
         <script src="scripts/main/controllers/main.js"></script>
+
         <script src="scripts/movies/module.js"></script>
         <script src="scripts/movies/movieModel.js"></script>
         <script src="scripts/movies/controllers/movies.js"></script>
+
+        <script src="scripts/genres/module.js"></script>
+        <script src="scripts/genres/genreModel.js"></script>
+
+        <script src="scripts/actors/module.js"></script>
+        <script src="scripts/actors/actorModel.js"></script>
 
         <script src="scripts/movies/controllers/moviesEdit.js"></script>
         <!-- endbuild -->
