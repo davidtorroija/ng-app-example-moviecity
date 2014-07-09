@@ -8,10 +8,25 @@
  * Controller of the moviecityApp
  */
 angular.module('moviecityApp')
-  .controller('MoviesEditCtrl', function ($scope, movie) {
-    console.log(movie);
+  .controller('MoviesEditCtrl', function ($scope, movie,movieModel, actors, genres,$location) {
 
-    // movie.year = moment(movie.releaseYear).format('YYYY');
-    // $scope.movie = movie;
+    $scope.movie = movie;
+    $scope.actors = actors;
+    $scope.genres = genres;
+
+
+    movie.year = moment(movie.releaseYear).format('YYYY');
+    movie.actors = _(movie.actors).pluck('id');
+
+    $scope.save = function(){
+      movie.actors = _(actors).filter(function(actor){
+        return _(movie.actors).contains(actor.id);
+      });
+      movieModel.save(movie)
+      .then(function(){
+        $location.path('/movies/' + movie.id);
+      });
+    };
+
 
   });
