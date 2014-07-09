@@ -21,7 +21,6 @@
           <img ng-src="{{movie.imageURL}}">
       </div>
       <div class="col-xs-6">
-          <div>Genre: {{movie.genre}}</div>
           <div class="row">
             <label class="col-xs-4 control-label" for="textinput">Director</label>
             <div class="col-xs-8">
@@ -41,10 +40,9 @@
                <select multiple
                 chosen
                 ng-model="movie.actors"
-                ng-options="actor as actor.fullName for actor in actors">
+                ng-options="actor.id as actor.fullName for actor in actors">
                 <option value=""></option>
               </select>
-              {{movie.actors}}
             </div>
           </div>
           <div class="row top-space-5">

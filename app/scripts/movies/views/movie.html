@@ -31,10 +31,9 @@
           </div>
           <div>Director: {{movie.directorName}}</div>
           <div>Rating: {{movie.rating}}</div>
-          <div>Genre: {{movie.genre}}</div>
           <span>Genre:</span>
           <div ng-repeat="genre in movie.genre">
-              <a class="inline" ng-href="#/actors/{{actor.id}}">
+              <a class="inline" ng-href="#/genres/{{genre}}">
                 {{genre}}
               </a>
               <span ng-show="!$last">, </span>
