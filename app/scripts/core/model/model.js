@@ -4,26 +4,20 @@ angular.module('Model')
 .factory('model', function($http, $q, $rootScope, $timeout,$localStorage, initializeLocalStorage) {
 
   function getById(table, id){
-    return _($localStorage[table]).findWhere({id:parseInt(id)});
+    return _($localStorage[table])
+      .findWhere({
+        id:parseInt(id)
+      });
   }
 
-  // function simulateAjaxCall(callback,params){
-  //   var deferred = $q.defer();
-
-  //   $timeout(function(){
-  //     var result = getById(params);
-  //     console.log(result);
-  //     deferred.resolve(result);
-  //   }, 1);
-
-  //   return deferred.promise;
-  // }
+  function get(table){
+    return $localStorage[table];
+  }
 
   function save(table, obj){
-    console.log(obj);
     var oldObj = getById(table,obj.id);
-    console.log(obj,oldObj);
-    oldObj = obj;
+    $localStorage[table] = _($localStorage[table]).without(oldObj);
+    $localStorage[table].push(obj);
   }
 
   return function(table){
@@ -32,7 +26,7 @@ angular.module('Model')
         var deferred = $q.defer();
 
         $timeout(function(){
-          var result = getById(table,id);
+          var result = angular.copy(getById(table,id));
           deferred.resolve(result);
         }, 1);
 
@@ -48,6 +42,30 @@ angular.module('Model')
 
         return deferred.promise;
       },
+      get: function() {
+        var deferred = $q.defer();
+
+        $timeout(function(){
+          var result = get(table);
+          deferred.resolve(result);
+        }, 1);
+
+        return deferred.promise;
+      },
     };
   };
 });
+
+
+
+  // function simulateAjaxCall(callback,params){
+  //   var deferred = $q.defer();
+
+  //   $timeout(function(){
+  //     var result = getById(params);
+  //     console.log(result);
+  //     deferred.resolve(result);
+  //   }, 1);
+
+  //   return deferred.promise;
+  // }

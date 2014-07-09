@@ -19,13 +19,18 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'scripts/main/views/main.html',
+        controller: 'MainCtrl',
+        resolve: {
+          movies: function($location,$route,movieModel) {
+            var id = $route.current.params.idMovie;
+            return movieModel.get()
+            .catch(function() {
+              $location.path('/');
+            });
+          },
+        }
       })
-      // .when('/about', {
-      //   templateUrl: 'views/about.html',
-      //   controller: 'AboutCtrl'
-      // })
       .when('/movies/edit/:idMovie', {
         templateUrl: 'scripts/movies/views/movieEdit.html',
         controller: 'MoviesEditCtrl',
@@ -39,15 +44,19 @@ angular
           },
         }
       })
-      // .when('/movies/:idMovie', {
-      //   templateUrl: 'scripts/movies/views/movie.html',
-      //   controller: 'MoviesCtrl',
-      //   resolve: {
-      //     movie: function($location,$route) {
-      //       // console.log($route.current.params.idMovie,$location);
-      //     },
-      //   }
-      // })
+      .when('/movies/:idMovie', {
+        templateUrl: 'scripts/movies/views/movie.html',
+        controller: 'MoviesCtrl',
+        resolve: {
+          movie: function($location,$route,movieModel) {
+            var id = $route.current.params.idMovie;
+            return movieModel.getById(id)
+            .catch(function() {
+              $location.path('/');
+            });
+          },
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });

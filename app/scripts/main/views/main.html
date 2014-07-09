@@ -1,0 +1,27 @@
+<div class="page-header">
+  <div class="pull-right">
+    <a ng-href="#/movies/edit/{{movie.id}}" class="btn btn-sm btn-yellow">
+      <i class="icon-magic bigger-120"></i>
+      <span class="bigger-110">Edit</span>
+    </a>
+  </div>
+
+  <h1>
+    Movies
+  </h1>
+</div><!-- /.page-header -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <ul>
+      <li ng-repeat="movie in movies">
+        <a ng-href="#/movies/{{movie.id}}">
+          <span>
+            {{movie.name}}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+

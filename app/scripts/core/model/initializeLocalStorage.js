@@ -43,7 +43,6 @@ angular.module('Model')
     }
   ];
 
-
   $localStorage.movies = $localStorage.movies || movies;
   $localStorage.actors = $localStorage.actors || actors;
 
