@@ -16,6 +16,7 @@ angular
     'Movies',
     'Actors',
     'Genres',
+    'Books',
     'localytics.directives'
   ])
   //routes config!
@@ -62,6 +63,19 @@ angular
       .when('/movies/:idMovie', {
         templateUrl: 'scripts/movies/views/movie.html',
         controller: 'MoviesCtrl',
+        resolve: {
+          movie: function($location,$route,movieModel) {
+            var id = $route.current.params.idMovie;
+            return movieModel.getById(id)
+            .catch(function() {
+              $location.path('/');
+            });
+          },
+        }
+      })
+      .when('/books', {
+        templateUrl: 'scripts/books/views/book.html',
+        controller: 'BooksCtrl',
         resolve: {
           movie: function($location,$route,movieModel) {
             var id = $route.current.params.idMovie;
