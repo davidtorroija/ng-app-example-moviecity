@@ -9,81 +9,67 @@
  */
  angular.module('moviecityApp')
  .controller('BooksCtrl', function ($scope) {
-   $scope.books = {
-    "editorial": {
-      "tb_table_contents": [
-        {
-          "id": "1",
-          "content": "Introduccion",
-          "level": "1",
-          "order": "1",
-          "id_book": "1"
-        },
-        {
-          "id": "2",
-          "content": "Motivacion",
-          "level": "2",
-          "order": "2",
-          "id_book": "1"
-        },
-        {
-          "id": "3",
-          "content": "Reseña Historica",
-          "level": "2",
-          "order": "3",
-          "id_book": "1"
-        },
+
+
+  $scope.selected_book = {
+    level: 0,
+    content: 'Pepe',
+    children: [
+    {
+      "id": "1",
+      "content": "Introduccion",
+      "level": "1",
+      "order": "1",
+      "id_book": "1",
+      children: []
+    },
+    {
+      "id": "2",
+      "content": "Motivacion",
+      "level": "2",
+      "order": "2",
+      "id_book": "1"
+      ,children: [
+      {
+        "id": "3",
+        "content": "Reseña Historica",
+        "level": "2",
+        "order": "3",
+        "id_book": "1"
+        ,children: [
         {
           "id": "4",
-          "content": "Origen",
+          "content": "Level 3",
           "level": "3",
           "order": "4",
           "id_book": "1"
-        },
-        {
-          "id": "5",
-          "content": "Trabajos",
-          "level": "3",
-          "order": "5",
-          "id_book": "1"
-        },
-        {
-          "id": "6",
-          "content": "Soluciones Actuales",
-          "level": "2",
-          "order": "6",
-          "id_book": "1"
-        },
-        {
-          "id": "7",
-          "content": "Objetivos",
-          "level": "2",
-          "order": "7",
-          "id_book": "1"
-        },
-        {
-          "id": "8",
-          "content": "Requisitos",
-          "level": "1",
-          "order": "8",
-          "id_book": "1"
-        },
-        {
-          "id": "9",
-          "content": "Hardware",
-          "level": "2",
-          "order": "9",
-          "id_book": "1"
-        },
-        {
-          "id": "10",
-          "content": "Software",
-          "level": "2",
-          "order": "10",
-          "id_book": "1"
-        }
+          ,children: [
+          {
+            "id": "5",
+            "content": "Level 4",
+            "level": "4",
+            "order": "5",
+            "id_book": "1"
+
+          }]
+        }]
+      },
       ]
-    }
-  }
+    },
+    ]
+  };
+
+  $scope.add_category = function (category, new_name){
+    var order = category.children.length ? _(category.children).chain().pluck('order').max().value() : parseInt(category.order);
+
+    category.children.push({
+      id: Date.now(),
+      content: new_name,
+      level: parseInt(category.level) +1,
+      order: order +1,
+      id_book: category.id_book
+    })
+  };
 
 });
+
