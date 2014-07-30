@@ -1,0 +1,34 @@
+<span>{{selected_book.name}}</span>
+
+<ul>
+  <li ng-repeat="content in selected_book.children">
+    <div class="row">
+      <span class="col-md-3" ng-bind="content.content"></span>
+
+      <a class="col-md-6" ng-hide="adding_category" ng-click="adding_category = true;">
+        <span class="glyphicon glyphicon-plus"></span>
+      </a>
+
+      <div class="col-md-6" ng-show="adding_category">
+        <input type="text" ng-model="new_category_name">
+        <a ng-click="add_category(content,new_category_name)"><span class="glyphicon glyphicon-plus"></span></a>
+      </div>
+    </div>
+
+    <div ng-include src="'tree.html'"></div>
+    <ul>
+      <li ng-repeat="data in content.children" ng-include src="'tree.html'"></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- <david-tree ng-model="selected_book.table_contents"></david-tree> -->
+
+<script type="text/ng-template" id="tree.html">
+  {{data.content}}
+  <ul>
+    <li ng-repeat="data in data.children" ng-include="'tree.html'">
+    </li>
+  </ul>
+</script>
+

@@ -55,17 +55,3 @@ angular.module('Model')
     };
   };
 });
-
-
-
-  // function simulateAjaxCall(callback,params){
-  //   var deferred = $q.defer();
-
-  //   $timeout(function(){
-  //     var result = getById(params);
-  //     console.log(result);
-  //     deferred.resolve(result);
-  //   }, 1);
-
-  //   return deferred.promise;
-  // }
