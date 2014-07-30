@@ -18,15 +18,34 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/angular-animate/angular-animate.js',
-      'bower_components/angular-cookies/angular-cookies.js',
-      'bower_components/angular-resource/angular-resource.js',
-      'bower_components/angular-route/angular-route.js',
-      'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
+    'bower_components/angular/angular.js',
+    'bower_components/angular-mocks/angular-mocks.js',
+    'bower_components/angular-animate/angular-animate.js',
+    'bower_components/angular-route/angular-route.js',
+    'bower_components/angular-chosen-localytics/chosen.js',
+    'bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js',
+    'bower_components/ngstorage/ngStorage.js',
+    'bower_components/underscore/underscore.js',
+    'app/scripts/app.js',
+    'app/scripts/core/model/module.js',
+    'app/scripts/core/model/model.js',
+    'app/scripts/core/model/initializeLocalStorage.js',
+    'scripts/main/controllers/main.js',
+
+    'app/scripts/movies/module.js',
+    'app/scripts/movies/movieModel.js',
+    'app/scripts/movies/controllers/movies.js',
+
+    'app/scripts/genres/module.js',
+    'app/scripts/genres/genreModel.js',
+
+    'app/scripts/actors/module.js',
+    'app/scripts/actors/actorModel.js',
+
+    'app/scripts/books/module.js',
+    'app/scripts/books/bookModel.js',
+    'app/scripts/books/controllers/books.js',
+    'app/scripts/books/specs/books_spec.js',
     ],
 
     // list of files / patterns to exclude
@@ -44,13 +63,13 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      'PhantomJS'
+    'PhantomJS'
     ],
 
     // Which plugins to enable
     plugins: [
-      'karma-phantomjs-launcher',
-      'karma-jasmine'
+    'karma-phantomjs-launcher',
+    'karma-jasmine'
     ],
 
     // Continuous Integration mode
