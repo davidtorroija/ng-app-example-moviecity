@@ -10,7 +10,6 @@
  angular.module('moviecityApp')
  .controller('BooksCtrl', function ($scope) {
 
-
   $scope.selected_book = {
     level: 0,
     content: 'Pepe',
@@ -50,7 +49,7 @@
             "level": "4",
             "order": "5",
             "id_book": "1"
-
+            ,children: []
           }]
         }]
       },
@@ -67,9 +66,31 @@
       content: new_name,
       level: parseInt(category.level) +1,
       order: order +1,
-      id_book: category.id_book
+      id_book: category.id_book,
+      children:[]
     })
+
+    category.adding_category = false;
   };
 
+  $scope.remove_category = function (category){
+    $scope.selected_book.children = find_recursively($scope.selected_book.children,category);
+  };
+
+  function find_recursively(categories,category){
+    // console.log(categories.length,JSON.stringify(categories,null,' '));
+
+    _(categories).every(function(item,index){
+      // console.log(index,item.level,_.isEqual(item, category));//,item,category);
+      if(_.isEqual(item, category)){
+        categories = _(categories).without(item);
+        // console.log('equal',categories.length);
+        return false;
+      }
+      item.children = find_recursively(item.children,category);
+      return true;
+    });
+    return categories;
+  }
 });
 

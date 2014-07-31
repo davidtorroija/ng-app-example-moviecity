@@ -5,8 +5,8 @@ describe('books specs', function() {
   beforeEach(module('moviecityApp'));
 
   var selected_book = {
-    name: 'Pepe',
-    table_contents: [
+    content: 'Pepe',
+    children: [
     {
       "id": "1",
       "content": "Introduccion",
@@ -18,7 +18,7 @@ describe('books specs', function() {
     {
       "id": "2",
       "content": "Motivacion",
-      "level": "2",
+      "level": "1",
       "order": "2",
       "id_book": "1"
       ,children: [
@@ -47,6 +47,14 @@ describe('books specs', function() {
       },
       ]
     },
+    {
+      "id": "2",
+      "content": "Motivacion",
+      "level": "1",
+      "order": "12",
+      "id_book": "1"
+      ,children: []
+    }
     ]
   };
 
@@ -71,7 +79,7 @@ describe('books specs', function() {
     expect(category.children[0].content).toBe('new Category');
   });
 
-    it('Should add Category at level 1 with not empty children', function() {
+  it('Should add Category at level 1 with not empty children', function() {
     var category = {
       "id": "1",
       "content": "Introduccion",
@@ -85,7 +93,7 @@ describe('books specs', function() {
     expect(category.children[1].content).toBe('new Category2');
   });
 
-   it('Should set the order to 3 in the last push', function() {
+  it('Should set the order to 3 in the last push', function() {
     var category = {
       "id": "1",
       "content": "Introduccion",
@@ -97,13 +105,75 @@ describe('books specs', function() {
 
     scope.add_category(category,'new Category');
     scope.add_category(category,'new Category2');
-    console.log(JSON.stringify(category,null,' '));
     expect(category.children[1].order).toBe(3);
   });
 
-  it('Should add Category at level 1', function() {
-    // scope.add_category(1,2);
+  it('Should remove element from array', function() {
+    // console.log(JSON.stringify(scope.selected_book,null,' '));
+    var category = {
+      "id": "2",
+      "content": "Motivacion",
+      "level": "1",
+      "order": "2",
+      "id_book": "1"
+      ,children: [
+      {
+        "id": "3",
+        "content": "Reseña Historica",
+        "level": "2",
+        "order": "3",
+        "id_book": "1"
+        ,children: [
+        {
+          "id": "4",
+          "content": "Level 3",
+          "level": "3",
+          "order": "4",
+          "id_book": "1"
+          ,children: [
+          {
+            "id": "5",
+            "content": "Level 4",
+            "level": "4",
+            "order": "5",
+            "id_book": "1"
+          }]
+        }]
+      },
+      ]
+    };
+    scope.remove_category(category);
+    expect(scope.selected_book.children.length).toBe(2);
+  });
 
+  it('Should remove element from children"s array', function() {
+    var category = {
+      "id": "3",
+      "content": "Reseña Historica",
+      "level": "2",
+      "order": "3",
+      "id_book": "1"
+      ,children: [
+      {
+        "id": "4",
+        "content": "Level 3",
+        "level": "3",
+        "order": "4",
+        "id_book": "1"
+        ,children: [
+        {
+          "id": "5",
+          "content": "Level 4",
+          "level": "4",
+          "order": "5",
+          "id_book": "1"
+        }]
+      }]
+    };
+    scope.remove_category(category);
+    // console.log(JSON.stringify(scope.selected_book,null,' '));
+
+    expect(scope.selected_book.children[1].children.length).toBe(0);
   });
 
 });
