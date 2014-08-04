@@ -54,8 +54,8 @@
         }]
       },
       ]
-    },
-    ]
+    }],
+
   };
 
   $scope.add_category = function (category, new_name){
@@ -74,23 +74,48 @@
   };
 
   $scope.remove_category = function (category){
-    $scope.selected_book.children = find_recursively($scope.selected_book.children,category);
+    $scope.selected_book.children = find_recursively_and_remove($scope.selected_book.children,category);
   };
 
-  function find_recursively(categories,category){
-    // console.log(categories.length,JSON.stringify(categories,null,' '));
-
+  function find_recursively_and_remove(categories,category){
     _(categories).every(function(item,index){
-      // console.log(index,item.level,_.isEqual(item, category));//,item,category);
       if(_.isEqual(item, category)){
         categories = _(categories).without(item);
-        // console.log('equal',categories.length);
         return false;
       }
-      item.children = find_recursively(item.children,category);
+      item.children = find_recursively_and_remove(item.children,category);
       return true;
     });
     return categories;
   }
+
+  $scope.move_up = function (category){
+    $scope.selected_book.children = find_recursively_and_move_up($scope.selected_book.children,category);
+  };
+
+  function find_recursively_and_move_up(categories,category){
+    _(categories).every(function(item,index){
+      if(_.isEqual(item, category)){
+        categories = _(categories).without(item);
+        return false;
+      }
+      item.children = find_recursively_and_move_up(item.children,category);
+      return true;
+    });
+    return categories;
+  }
+
+
+  $scope.names = [];
+    var data = [];
+    for (var i = 0; i < 100; i++) {
+        data.push('item' + i)
+    }
+    $scope.add = function () {
+        if (data.length) $scope.names.splice(0, 0, data.pop());
+    };
+    $scope.remove = function (index) {
+        $scope.names.splice(index, 1);
+    };
 });
 

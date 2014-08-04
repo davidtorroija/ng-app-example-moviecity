@@ -20,7 +20,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-     
+
       <form class="navbar-form navbar-left" role="search">
         <div class="input-group">
           <input ng-model="selected" typeahead="result.id as result.name for result in getLocation($viewValue) | filter:$viewValue | limitTo:8" type="text" class="form-control" placeholder="Search" typeahead-on-select="select()">

@@ -1,7 +1,7 @@
 <div class="row">
-  <span class="col-md-2" ng-bind="data.content"></span>
+  <span class="col-md-3" ng-bind="data.content"></span>
 
-  <div ng-animate="" class="icons" ng-hide="data.adding_category || !data.show_menu">
+  <div class="col-md-6" class="animation" class="icons" ng-hide="data.adding_category || !data.show_menu">
     <a ng-click="data.adding_category = true;">
       <span class="glyphicon glyphicon-plus"></span>
     </a>
@@ -22,7 +22,7 @@
   </div>
 </div>
 <ul>
-  <li ng-repeat="data in data.children" ng-include="'scripts/books/views/tree.html'" ng-mouseover="data.show_menu = true" ng-mouseleave="data.show_menu = false">
+  <li class="animation" ng-repeat="data in data.children" ng-include="'scripts/books/views/tree.html'" ng-mouseover="data.show_menu = true" ng-mouseleave="data.show_menu = false">
 
   </li>
 </ul>

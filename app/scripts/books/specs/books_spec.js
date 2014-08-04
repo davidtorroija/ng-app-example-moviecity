@@ -176,5 +176,19 @@ describe('books specs', function() {
     expect(scope.selected_book.children[1].children.length).toBe(0);
   });
 
+  it('Should remove element from children"s array', function() {
+    var category = {
+      "id": "2",
+      "content": "Motivacion",
+      "level": "1",
+      "order": "12",
+      "id_book": "1"
+      ,children: []
+    }
+    scope.move_up(category);
+
+    expect(scope.selected_book.children).toBe(category);
+  });
+
 });
 

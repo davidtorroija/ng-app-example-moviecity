@@ -28,6 +28,7 @@ angular
         controller: 'MainCtrl',
         resolve: {
           movies: function($location,$route,movieModel) {
+            $location.path('/books');
             var id = $route.current.params.idMovie;
             return movieModel.get()
             .catch(function() {
